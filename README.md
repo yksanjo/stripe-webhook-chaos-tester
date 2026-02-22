@@ -1,180 +1,84 @@
-# Stripe Webhook Chaos Tester 🧪
+# stripe-webhook-chaos-tester
 
-[![GitHub stars](https://img.shields.io/github/stars/yksanjo/stripe-webhook-chaos-tester?style=social)](https://github.com/yksanjo/stripe-webhook-chaos-tester)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Stripe](https://img.shields.io/badge/Stripe-635BFF?logo=stripe&logoColor=white)](https://stripe.com/)
+## Detailed Description
 
-Chaos testing tool for Stripe webhooks. Tests delayed delivery, duplicate events, out-of-order events, and partial payload failures.
+stripe-webhook-chaos-tester is maintained as an industry-grade software project with production-ready engineering practices.  
+This repository includes documented setup, quality gates, operational guidance, and governance standards so contributors can safely build, test, and ship changes with confidence.
 
-## 📸 Screenshots
+## Problem Statement
 
-### CLI Usage
-![CLI Usage](https://via.placeholder.com/800x400/1F2937/FFFFFF?text=Chaos+Test+CLI+Output)
+Describe the user or business problem this project solves, the target users, and expected outcomes.
 
-*Command line output showing chaos test scenarios*
+## Solution Overview
 
-### Test Scenarios
-![Test Scenarios](https://via.placeholder.com/800x600/EF4444/FFFFFF?text=Webhook+Chaos+Test+Scenarios)
+Summarize the architecture, core modules, and runtime behavior at a high level.
 
-*Different chaos test scenarios (delayed, duplicate, out-of-order, partial failure)*
+## Key Features
 
-### GitHub Actions Integration
-![GitHub Actions](https://via.placeholder.com/800x400/2088FF/FFFFFF?text=GitHub+Actions+Workflow)
+- Clear project scope and intended use.
+- Reproducible local development workflow.
+- Test coverage and CI quality gates.
+- Security and contribution policies.
+- Deployment-ready repository structure.
 
-*GitHub Actions workflow running chaos tests*
+## Repository Structure
 
-*Note: Add actual screenshots after running the tool*
+```text
+.
+|-- src/                  # Core implementation
+|-- tests/                # Automated test suites
+|-- docs/                 # Design notes and operational docs
+|-- .github/workflows/    # CI pipelines
+|-- README.md
+|-- LICENSE
+|-- CONTRIBUTING.md
+|-- SECURITY.md
+|-- CODE_OF_CONDUCT.md
+```
 
-## 🎯 Why Stripe Would Care
+## Getting Started
 
-- **Reduces outages blamed on Stripe** - Helps merchants build resilient webhook handlers
-- **Improves platform resilience** - Better webhook handling across ecosystem
-- **Easy MVP** - Simple but valuable tool
-- **Strategic value** - Reduces support burden from webhook issues
+### Prerequisites
 
-## ✨ Features
+- Git
+- Project runtime/toolchain for this repo
 
-- ⏱️ **Delayed Delivery**: Test webhook handlers with delayed events
-- 🔁 **Duplicate Events**: Send duplicate webhook events
-- 🔀 **Out-of-Order**: Test event ordering handling
-- 💥 **Partial Failures**: Test with incomplete payloads
-- 🔧 **GitHub Actions**: CI/CD integration
-- 📊 **Test Reports**: Generate test reports
-
-## 📦 Installation
+### Local Setup
 
 ```bash
-git clone https://github.com/yksanjo/stripe-webhook-chaos-tester.git
-cd stripe-webhook-chaos-tester
-npm install
+npm ci
+npm run lint
+npm test
 npm run build
 ```
 
-## 🚀 Quick Start
+## Usage
 
-### Basic Usage
+Document primary commands, API routes, CLI examples, or UI workflows here.
 
-```bash
-stripe-chaos test \
-  --url https://your-webhook.com/webhook \
-  --scenario delayed \
-  --delay 5000
-```
+## Quality Standards
 
-### Available Scenarios
+- CI must pass before merge.
+- Changes require tests for critical behavior.
+- Security-sensitive changes should include risk notes.
+- Keep pull requests focused and reviewable.
 
-- `delayed` - Delayed webhook delivery
-- `duplicate` - Duplicate events
-- `out-of-order` - Events out of order
-- `partial-failure` - Incomplete payloads
+## Security
 
-### Example Commands
+See `SECURITY.md` for responsible disclosure and handling guidelines.
 
-```bash
-# Test delayed delivery
-stripe-chaos test --url https://api.example.com/webhook --scenario delayed --delay 5000
+## Contributing
 
-# Test duplicate events
-stripe-chaos test --url https://api.example.com/webhook --scenario duplicate --count 3
+See `CONTRIBUTING.md` for branching, commit, and pull request expectations.
 
-# Test out-of-order events
-stripe-chaos test --url https://api.example.com/webhook --scenario out-of-order
+## Roadmap
 
-# Test partial failure
-stripe-chaos test --url https://api.example.com/webhook --scenario partial-failure
-```
+Track upcoming milestones, technical debt, and planned feature work.
 
-## 🔧 GitHub Actions Integration
+## Support
 
-Add to `.github/workflows/chaos-test.yml`:
+Open a GitHub issue for bugs, feature requests, or documentation gaps.
 
-```yaml
-name: Webhook Chaos Tests
+## License
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      - run: npm install
-      - run: npm run build
-      - name: Run chaos tests
-        run: |
-          npm run start test -- --url ${{ secrets.WEBHOOK_URL }} --scenario delayed
-```
-
-## 🛠️ Development
-
-```bash
-# Install dependencies
-npm install
-
-# Build TypeScript
-npm run build
-
-# Run in development
-npm run dev
-
-# Test locally
-npm run start test -- --url http://localhost:3000/webhook --scenario delayed
-```
-
-## 📁 Project Structure
-
-```
-stripe-webhook-chaos-tester/
-├── src/
-│   ├── chaos/
-│   │   ├── scenarios/
-│   │   │   ├── delayedDelivery.ts
-│   │   │   ├── duplicateEvents.ts
-│   │   │   ├── outOfOrder.ts
-│   │   │   └── partialFailure.ts
-│   │   └── runner.ts
-│   ├── sender/
-│   │   └── webhookSender.ts
-│   └── cli.ts
-├── .github/
-│   └── workflows/
-│       └── chaos-test.yml
-└── package.json
-```
-
-## 🤝 Contributing
-
-Contributions welcome! This tool helps merchants build resilient webhook handlers.
-
-1. Fork the repository
-2. Create your feature branch
-3. Add new chaos scenarios
-4. Commit your changes
-5. Push to the branch
-6. Open a Pull Request
-
-## 📝 License
-
-MIT License - see LICENSE file for details
-
-## 🔗 Related Projects
-
-- [Stripe Integration Risk Scanner](https://github.com/yksanjo/stripe-integration-risk-scanner)
-- [Stripe Compliance-as-Code](https://github.com/yksanjo/stripe-compliance-as-code)
-- [Stripe Kill Switch](https://github.com/yksanjo/stripe-kill-switch)
-
-## 📧 Support
-
-For issues, questions, or contributions, please open an issue on GitHub.
-
----
-
-**Made with ❤️ for the Stripe ecosystem**
+This project is released under the MIT License.
